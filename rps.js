@@ -1,4 +1,35 @@
-playGame();
+
+let totalRounds = Number(prompt("How many rounds do you want to play: "));
+let round = 1;
+
+
+const buttons = document.querySelectorAll("button");
+
+// we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+  // and for each one we add a 'click' listener
+  button.addEventListener("click", () => {
+    let humanChoice = button.className;
+    playGame(humanChoice);
+  });
+
+  button.addEventListener("mouseenter",() =>
+  {
+    // button.style.width = "150px";
+    button.style.backgroundColor = "steelblue";
+  }
+)
+
+   button.addEventListener("mouseleave",() =>
+  {
+    // button.style.width = "110px";
+    button.style.backgroundColor = "black";
+  }
+
+)
+});
+
+
 
 function getComputerChoice(){
     let x = Math.random()*2.999999;
@@ -22,18 +53,14 @@ function getComputerChoice(){
     return choice;
 }
 
-function getHumanChoice(a){
-    let choice = prompt("Round " + a + '\n' + "Your Turn: ").toLowerCase();
-
-    return choice;
-}
 
 function playRound(a){
     
-    let humanchoice = getHumanChoice(a);
+    let humanchoice = a;
     let computerchoice = getComputerChoice();
 
-    alert("Computer: "+ computerchoice);
+    let computerOutput = document.querySelector(".computer")
+    computerOutput.textContent = computerchoice;
 
     let win = -1; //0 -> draw , 1 -> computer , 2->human
 
@@ -84,19 +111,22 @@ function playRound(a){
 
         }    
 
-    return win;
+        return win;
 }
 
-function playGame()
+
+let humanscore = 0;
+let computerscore = 0;
+
+function playGame(a)
 {
-    let round = 1;
-
-    let humanscore = 0;
-    let computerscore = 0;
-
-    while(round <= 5)
+    if (round <= totalRounds)
     {
-        let winner = playRound(round);
+
+        let roundNumber = document.querySelector(".round");
+        roundNumber.textContent = `ROUND : ${round}`;
+
+        let winner = playRound(a);
 
         if(winner== 1)
         {
@@ -108,26 +138,41 @@ function playGame()
             humanscore++;
         }
 
-        else if(winner == -1)
+        round++;
+        
+        let s = document.querySelector(".score");
+        s.textContent = `SCORE : ${humanscore} - ${computerscore}`;
+
+        if (round <= totalRounds)
         {
-            alert("Improper Input");
-            round --;
+        roundNumber.textContent = `ROUND : ${round}`;
         }
 
-        round++;
-    }
+    if (round > totalRounds)//so that the user can check their last round score 
+    {
+        setTimeout(() => finalResult(s), 700);
+}
+}
+}
+
+function finalResult(s)
+{
+
+    let result;
 
     if (humanscore> computerscore)
     {
-        alert("You win!");
+        result = "You win!";
     }
 
     else if (computerscore>humanscore)
     {
-        alert("Computer wins");
+        result = "Computer wins";
     }
 
     else{
-        alert("It's a tie!");
+        result = "It's a tie!";
     }
+
+    s.textContent = result;
 }

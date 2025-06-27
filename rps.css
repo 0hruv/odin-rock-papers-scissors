@@ -1,0 +1,80 @@
+*{
+    background-color:teal;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.round
+{
+    background-color: black;
+    color: aliceblue;
+    padding: 10px;
+}
+
+.icons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+}
+
+.choices
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.human-choice{
+    margin-left: 140px;
+}
+
+
+button{
+    background-color: black;
+    color: aliceblue;
+    height: 35px;
+    width: 110px;
+    font-size:large;
+    margin: 5px;
+}
+
+svg
+{
+    height: 200px;
+    width: 300px;
+}
+
+.computer
+{
+    height: 50px;
+    width: 140px;
+    background-color: black;
+    color: aliceblue;
+    margin-right: 242px;
+    font-size:large;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.score{
+    display: inline;
+    background-color: black;
+    color: aliceblue;
+    padding : 8px;   
+    
+}
